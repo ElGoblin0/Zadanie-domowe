@@ -7,7 +7,7 @@
 
 #include "common.h"
 
-
+// To jeszcze nie jest zrobione, za późno zauważyłem błąd!!!
 
 int main(int argc, char * argv[])
 try
