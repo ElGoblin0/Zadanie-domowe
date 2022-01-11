@@ -21,18 +21,18 @@ try
         auto input = safely_open_file(argv[1]);
         data = read_entire_stream(input);
 
-        if(argv[2] == 0)
-        {
-            temp = data;
-        }
-        else
+        if(argv[2] != 0)
         {
             auto input2 = safely_open_file(argv[2]);
             data2 = read_entire_stream(input2);
         
             temp.reserve(data.size() + data2.size());
             temp.insert(temp.end(), data.begin(), data.end());
-            temp.insert(temp.end(), data2.begin(), data2.end());   
+            temp.insert(temp.end(), data2.begin(), data2.end());
+        }
+        else
+        {
+            temp = data;
         }          
     }
     else
