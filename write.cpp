@@ -7,7 +7,7 @@
 
 #include "common.h"
 
-// To jeszcze nie jest zrobione, za późno zauważyłem błąd!!!
+
 
 int main(int argc, char * argv[])
 try
@@ -21,19 +21,26 @@ try
         auto input = safely_open_file(argv[1]);
         data = read_entire_stream(input);
 
-        auto input2 = safely_open_file(argv[2]);
-        data2 = read_entire_stream(input2);
-
-        temp.reserve(data.size() + data2.size());
-        temp.insert(temp.end(), data.begin(), data.end());
-        temp.insert(temp.end(), data2.begin(), data2.end());
+        if(argv[2] == 0)
+        {
+            temp = data;
+        }
+        else
+        {
+            auto input2 = safely_open_file(argv[2]);
+            data2 = read_entire_stream(input2);
+        
+            temp.reserve(data.size() + data2.size());
+            temp.insert(temp.end(), data.begin(), data.end());
+            temp.insert(temp.end(), data2.begin(), data2.end());   
+        }          
     }
     else
     {
-        data = read_entire_stream(std::cin);
+        temp = read_entire_stream(std::cin);
     }   
 
-    if(data.empty())
+    if(temp.empty())
     {
         throw std::runtime_error("nothing to write");
     }
